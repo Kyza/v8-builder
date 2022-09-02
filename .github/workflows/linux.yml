@@ -21,53 +21,40 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-#       - name: Checkout Main
-#         uses: actions/checkout@v3
-#         with:
-#           path: main
+      - name: Checkout Main
+        uses: actions/checkout@v3
+        with:
+          path: main
 
-#       - name: Checkout depot_tools
-#         run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+      - name: Checkout depot_tools
+        run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 
-#       - name: Add depot_tools to PATH
-#         run: |
-#           DEPOT_TOOLS_PATH=$(realpath ./depot_tools)
-#           echo $DEPOT_TOOLS_PATH
-#           echo "$DEPOT_TOOLS_PATH" >> $GITHUB_PATH
+      - name: Add depot_tools to PATH
+        run: |
+          DEPOT_TOOLS_PATH=$(realpath ./depot_tools)
+          echo $DEPOT_TOOLS_PATH
+          echo "$DEPOT_TOOLS_PATH" >> $GITHUB_PATH
           
-#       - name: Update depot_tools
-#         run: gclient
+      - name: Update depot_tools
+        run: gclient
         
-#       - name: Fetch v8
-#         run: fetch v8
+      - name: Fetch v8
+        run: fetch v8
           
-#       - name: Build v8 Deps
-#         run: |
-#           cd v8
-#           gclient sync
-#           ./build/install-build-deps.sh
+      - name: Build v8 Deps
+        run: |
+          cd v8
+          gclient sync
+          ./build/install-build-deps.sh
           
-#       - name: Build Release & Debug v8
-#         run: |
-#           cd v8
-#           ./tools/dev/gm.py x64.release & ./tools/dev/gm.py x64.debug
+      - name: Build Release & Debug v8
+        run: |
+          cd v8
+          ./tools/dev/gm.py x64.release & ./tools/dev/gm.py x64.debug
 
-#       - name: Zip Builds
-#         run: zip -r v8-release.zip ./v8/out/x64.release & zip -r v8-debug.zip ./v8/out/x64.debug
+      - name: Zip Builds
+        run: zip -r v8-release.zip ./v8/out/x64.release & zip -r v8-debug.zip ./v8/out/x64.debug
         
-#       - name: Release
-#         uses: "marvinpinto/action-automatic-releases@latest"
-#         with:
-#           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-#           automatic_release_tag: "latest"
-#           prerelease: false
-#           files: |
-#             v8-release.zip
-#             v8-debug.zip
-      
-      - name: Make Test File
-        run: echo hi > test.txt
-
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -75,4 +62,5 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: false
           files: |
-            test.txt
+            v8-release.zip
+            v8-debug.zip
