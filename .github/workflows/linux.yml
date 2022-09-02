@@ -48,7 +48,9 @@ jobs:
           ./build/install-build-deps.sh
           
       - name: Build v8
-        run: ./v8/tools/dev/gm.py x64.release
+        run: |
+          cd v8
+          ./tools/dev/gm.py x64.release
 
       - name: Zip Build
         run: zip -r v8.zip v8
