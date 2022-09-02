@@ -47,13 +47,13 @@ jobs:
           gclient sync
           ./build/install-build-deps.sh
           
-      - name: Build v8
+      - name: Build Release & Debug v8
         run: |
           cd v8
-          ./tools/dev/gm.py x64.release
+          ./tools/dev/gm.py x64.release & ./tools/dev/gm.py x64.debug
 
-      - name: Zip Build
-        run: zip -r v8.zip v8/out/x64.release
+      - name: Zip Builds
+        run: zip -r v8-release.zip ./v8/out/x64.release & zip -r v8-debug.zip ./v8/out/x64.debug
         
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -62,4 +62,5 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: false
           files: |
-            v8.zip
+            v8-release.zip
+            v8-debug.zip
