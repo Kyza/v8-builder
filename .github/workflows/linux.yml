@@ -48,8 +48,16 @@ jobs:
           ./build/install-build-deps.sh
           
       - name: Build v8
-        run: |
-          ls
-          cd v8
-          ls
-          ./tools/dev/gm.py x64.release
+        run: ./v8/tools/dev/gm.py x64.release
+
+      - name: Zip Build
+        run: zip -r v8.zip v8
+        
+      - name: Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          files: |
+            v8.zip
