@@ -48,4 +48,8 @@ jobs:
           ./build/install-build-deps.sh
           
       - name: Build v8
-        run: ./tools/dev/gm.py x64.release
+        run: |
+          ls
+          cd v8
+          ls
+          ./tools/dev/gm.py x64.release
