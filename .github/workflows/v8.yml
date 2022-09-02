@@ -38,21 +38,18 @@ jobs:
           
       - name: Update depot_tools
         run: |
-          cd ./depot_tools
-          ls
-          cd ..
-          gclient
+          $DEPOT_TOOLS_PATH/gclient
         
       - name: Fetch v8
         run: |
-          fetch v8
+          $DEPOT_TOOLS_PATH/fetch v8
           ls
           cd v8
 
       - name: Update v8
         run: |
           git pull
-          gclient sync
+          $DEPOT_TOOLS_PATH/gclient sync
           
       - name: ls
         run: ls
