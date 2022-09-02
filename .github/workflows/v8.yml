@@ -37,7 +37,11 @@ jobs:
           echo $PATH
           
       - name: Update depot_tools
-        run: gclient
+        run: |
+          cd ./depot_tools
+          ls
+          cd ..
+          gclient
         
       - name: Fetch v8
         run: |
