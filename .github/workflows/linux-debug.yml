@@ -53,13 +53,15 @@ jobs:
           ./tools/dev/gm.py x64.debug
 
       - name: Zip Build
-        run: zip -r v8-debug.zip ./v8/out/x64.debug
+        run: |
+          cd ./v8/out/x64.debug
+          zip -r v8-debug.zip .
         
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: "latest-linux-debug"
           prerelease: false
           files: |
             v8-debug.zip

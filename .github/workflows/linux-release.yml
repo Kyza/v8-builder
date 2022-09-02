@@ -53,13 +53,15 @@ jobs:
           ./tools/dev/gm.py x64.release
 
       - name: Zip Build
-        run: zip -r v8-release.zip ./v8/out/x64.release
+        run: |
+          cd ./v8/out/x64.release
+          zip -r v8-release.zip .
         
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: "latest-linux-release"
           prerelease: false
           files: |
             v8-release.zip
