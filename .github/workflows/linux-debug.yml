@@ -64,4 +64,4 @@ jobs:
           automatic_release_tag: "latest-linux-debug"
           prerelease: false
           files: |
-            v8-debug.zip
+            ./v8/out/x64.debug/v8-debug.zip

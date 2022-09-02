@@ -64,4 +64,4 @@ jobs:
           automatic_release_tag: "latest-linux-release"
           prerelease: false
           files: |
-            v8-release.zip
+            ./v8/out/x64.release/v8-release.zip
