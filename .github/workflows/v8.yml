@@ -27,10 +27,7 @@ jobs:
           path: main
 
       - name: Checkout depot_tools
-        uses: actions/checkout@v3
-        with:
-          repository: https://chromium.googlesource.com/chromium/tools/depot_tools.git
-          path: depot_tools
+        run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 
       - name: Add depot_tools to PATH
         run: |
