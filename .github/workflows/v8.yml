@@ -43,10 +43,10 @@ jobs:
         run: |
           fetch v8
           ls
-          cd v8
 
       - name: Update v8
         run: |
+          cd v8
           git pull
           gclient sync
           
