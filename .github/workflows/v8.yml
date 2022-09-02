@@ -34,6 +34,7 @@ jobs:
           DEPOT_TOOLS_PATH=$(realpath ./depot_tools)
           echo $DEPOT_TOOLS_PATH
           export PATH=$DEPOT_TOOLS_PATH:$PATH
+          echo $PATH
           
       - name: Update depot_tools
         run: gclient
