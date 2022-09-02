@@ -53,7 +53,7 @@ jobs:
           ./tools/dev/gm.py x64.release
 
       - name: Zip Build
-        run: zip -r v8.zip v8
+        run: zip -r v8.zip v8/out/x64.release
         
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
