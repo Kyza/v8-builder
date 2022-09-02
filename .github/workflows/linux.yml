@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Linux
 
 # Controls when the workflow will run
 on:
@@ -36,19 +36,16 @@ jobs:
           echo "$DEPOT_TOOLS_PATH" >> $GITHUB_PATH
           
       - name: Update depot_tools
-        run: |
-          gclient
+        run: gclient
         
       - name: Fetch v8
-        run: |
-          fetch v8
-          ls
-
-      - name: Update v8
+        run: fetch v8
+          
+      - name: Build v8 Deps
         run: |
           cd v8
-          git pull
           gclient sync
+          ./build/install-build-deps.sh
           
-      - name: ls
-        run: ls
+      - name: Build v8
+        run: ./tools/dev/gm.py x64.release
